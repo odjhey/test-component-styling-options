@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "workspaces": [
+    "ui-components-css-in-js",
+    "ui-components-css-variables",
+    "webui",
+    "storybook"
+  ],
+  "nohoist": [
+    "**/husky",
+    "**/husky/**"
+  ]
+}
+
