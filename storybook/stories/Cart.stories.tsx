@@ -8,19 +8,21 @@ export default {
 const CartData = [
   {
     id: '001',
-    name: 'Sardinas',
+    name: 'Dark Jeans',
     availableQuantity: 10,
-    price: 15,
-    rating: '5 star',
+    price: 670,
+    sellingPrice: 88,
+    rating: '5 stars',
     discount: 12,
     imgSrc:
-      'https://cdn.shopify.com/s/files/1/2889/2216/products/Mega_Sardines_Tomato_Sauce_Regular_Easy_Open_Can_155G_800x.png?v=1523024305',
+      'https://ph-test-11.slatic.net/p/ba7ae0c611d3061378cdcc3e24d741ea.jpg_2200x2200q80.jpg',
   },
   {
     id: '002',
     name: 'Noodols',
     availableQuantity: 15,
     price: 9.25,
+    sellingPrice: 88,
     rating: '5 star',
     discount: 2,
     imgSrc:
@@ -31,6 +33,7 @@ const CartData = [
     name: 'Kurn Bip',
     availableQuantity: 55,
     price: 12.5,
+    sellingPrice: 88,
     rating: '5 star',
     discount: 50,
     imgSrc:
@@ -40,10 +43,23 @@ const CartData = [
 
 // By passing optional props to this story, you can control the props of the component when
 // you consume the story in a test.
-export const FeaturedItemComponent = (props?: Partial<any>) => (
-  <FeaturedItem
-    item={{ ...CartData[2], rating: '5 star' }}
-    addToCart={console.log}
-    addToFavorites={console.log}
-  ></FeaturedItem>
+export const FeaturedItemThemed = (props?: Partial<any>) => (
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginTop: '10px',
+    }}
+  >
+    <FeaturedItem
+      item={{ ...CartData[1], rating: '5 star' }}
+      addToCart={console.log}
+      addToFavorites={console.log}
+    ></FeaturedItem>
+    <FeaturedItem
+      item={{ ...CartData[0], rating: '5 star' }}
+      addToCart={console.log}
+      addToFavorites={console.log}
+    ></FeaturedItem>
+  </div>
 );

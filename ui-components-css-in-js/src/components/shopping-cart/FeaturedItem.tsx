@@ -1,5 +1,4 @@
 import React, { Fragment, CSSProperties } from 'react';
-import { getItemTotalPrice } from '../../commons/discount';
 import FeaturedItemLayout from '../../layouts/FeaturedItemLayout';
 import { IProduct } from 'types';
 
@@ -15,40 +14,6 @@ const FeaturedItem = (props: IFeaturedItem) => {
   //controls
   const { addToCart, addToFavorites } = props;
 
-  const ItemDescription = (props: { item: IProduct }) => {
-    const { item } = props;
-    const { name, price, rating, discount } = item;
-    return (
-      <Fragment>
-        <h3 style={styles.defaultText}>{name}</h3>
-        <p
-          style={{
-            ...styles.defaultText,
-            ...styles.discountedPrice,
-          }}
-        >
-          ₱ {price}
-        </p>
-
-        <p
-          style={{
-            ...styles.defaultText,
-            ...styles.price,
-          }}
-        >
-          ₱{` `}
-          {getItemTotalPrice({
-            originalPrice: price,
-            discount: discount,
-            quantity: 1,
-            discounted: true,
-          })}
-        </p>
-        <span>{rating}</span>
-      </Fragment>
-    );
-  };
-  console.log('imgSrc', imgSrc, item);
   return (
     <FeaturedItemLayout
       discount={discount}
@@ -108,6 +73,34 @@ const styles: {
     fontSize: '18px',
     fontWeight: 'bold',
   },
+};
+
+const ItemDescription = (props: { item: IProduct }) => {
+  const { item } = props;
+  const { name, price, rating, sellingPrice } = item;
+  return (
+    <Fragment>
+      <h3 style={styles.defaultText}>{name}</h3>
+      <p
+        style={{
+          ...styles.defaultText,
+          ...styles.discountedPrice,
+        }}
+      >
+        ₱ {price}
+      </p>
+
+      <p
+        style={{
+          ...styles.defaultText,
+          ...styles.price,
+        }}
+      >
+        ₱ {sellingPrice}
+      </p>
+      <span>{rating}</span>
+    </Fragment>
+  );
 };
 
 export default FeaturedItem;
