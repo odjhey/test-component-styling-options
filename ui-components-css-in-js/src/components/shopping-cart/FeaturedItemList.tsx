@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { HorizantalListLayout } from '../../layouts';
-import { IProduct } from 'types';
+import { IProduct } from '../../types';
 import FeaturedItem from './FeaturedItem';
 
 const FeaturedItemList = (props: {
@@ -17,8 +17,8 @@ const FeaturedItemList = (props: {
           <div style={styles.item}>
             <FeaturedItem
               item={item}
-              addToCart={(item) => addToCart(item)}
-              addToFavorites={(item) => addToFavorites(item)}
+              addToCart={item => addToCart(item)}
+              addToFavorites={item => addToFavorites(item)}
             ></FeaturedItem>
           </div>
         ))}

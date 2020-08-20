@@ -1,13 +1,25 @@
 import React, { ReactNode, CSSProperties } from 'react';
 
+export interface IFeaturedItemLayoutStyle {
+  wrapper: CSSProperties;
+  container: CSSProperties;
+  image: CSSProperties;
+  details: CSSProperties;
+  left: CSSProperties;
+  discount: CSSProperties;
+  off: CSSProperties;
+}
+
 export interface IFeaturedItemLayout {
   discount: ReactNode;
   image: ReactNode;
   leftElement: ReactNode;
+  layoutStyles?: IFeaturedItemLayoutStyle;
 }
 
 const FeaturedItemLayout = (props: IFeaturedItemLayout) => {
-  const { discount, image, leftElement } = props;
+  const { discount, image, leftElement, layoutStyles: componentStyles } = props;
+  const styles = componentStyles || defaultStyles;
   return (
     <div style={styles.wrapper}>
       <div style={styles.discount}>
@@ -26,7 +38,7 @@ const FeaturedItemLayout = (props: IFeaturedItemLayout) => {
   );
 };
 
-const styles: {
+const defaultStyles: {
   wrapper: CSSProperties;
   container: CSSProperties;
   image: CSSProperties;
@@ -70,15 +82,6 @@ const styles: {
     flexDirection: 'column',
     padding: '20px',
   },
-  // right: {
-  //   width: '30%',
-
-  //   borderLeft: 'solid thin rgba(0,0,0,0.1)',
-  //   display: 'flex',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   cursor: 'pointer',
-  // },
   discount: {
     zIndex: 9,
     background: 'rgb(235, 89, 35)',

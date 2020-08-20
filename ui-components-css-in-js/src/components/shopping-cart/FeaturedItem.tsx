@@ -1,11 +1,20 @@
 import React, { Fragment, CSSProperties } from 'react';
-import FeaturedItemLayout from '../../layouts/FeaturedItemLayout';
-import { IProduct } from 'types';
+import FeaturedItemLayout, {
+  IFeaturedItemLayoutStyle,
+} from '../../layouts/FeaturedItemLayout';
+import { IProduct } from '../../types';
+import { Button } from '../../core';
 
 export interface IFeaturedItem {
   item: IProduct;
   addToCart(item: IProduct): void;
   addToFavorites(item: IProduct): void;
+  layoutStyles?: IFeaturedItemLayoutStyle;
+  customStyles?: IFeaturedItemCustomStyles;
+}
+
+export interface IFeaturedItemCustomStyles {
+  addToCartStyle?: CSSProperties;
 }
 
 const FeaturedItem = (props: IFeaturedItem) => {
@@ -13,9 +22,14 @@ const FeaturedItem = (props: IFeaturedItem) => {
   const { discount, imgSrc } = item;
   //controls
   const { addToCart, addToFavorites } = props;
+  const { layoutStyles } = props;
+  const { addToCartStyle } = props.customStyles
+    ? props.customStyles
+    : defaultStyle;
 
   return (
     <FeaturedItemLayout
+      layoutStyles={layoutStyles || undefined}
       discount={discount}
       image={
         <img
@@ -36,13 +50,14 @@ const FeaturedItem = (props: IFeaturedItem) => {
           >
             Add to favorites
           </p>
-          <button
+          <Button
+            style={addToCartStyle}
             type="button"
             onClick={() => addToCart(item)}
             // style={{ ...styles.defaultText, fontSize: '16px' }}
           >
             + Add To Cart
-          </button>
+          </Button>
         </Fragment>
       }
     ></FeaturedItemLayout>
@@ -101,6 +116,13 @@ const ItemDescription = (props: { item: IProduct }) => {
       <span>{rating}</span>
     </Fragment>
   );
+};
+
+const defaultStyle: IFeaturedItemCustomStyles = {
+  addToCartStyle: {
+    color: 'red',
+    border: '1px blue solid',
+  },
 };
 
 export default FeaturedItem;

@@ -1,4 +1,4 @@
-import { IProductFormik } from 'types';
+import { IProductFormik } from '../types';
 
 export function roundOffTwoDecimals(num: number): number {
   return parseFloat((Math.round(num * 100) / 100).toFixed(2));

@@ -1,5 +1,5 @@
-import React from 'react';
-import { FeaturedItem } from '@ftsquad/ui';
+import React, { CSSProperties } from 'react';
+import { FeaturedItem, IFeaturedItemLayoutStyle } from '@ftsquad/ui';
 
 export default {
   title: 'Cart',
@@ -47,8 +47,7 @@ export const FeaturedItemThemed = (props?: Partial<any>) => (
   <div
     style={{
       display: 'flex',
-      justifyContent: 'space-between',
-      marginTop: '10px',
+      flexDirection: 'row',
     }}
   >
     <FeaturedItem
@@ -57,9 +56,70 @@ export const FeaturedItemThemed = (props?: Partial<any>) => (
       addToFavorites={console.log}
     ></FeaturedItem>
     <FeaturedItem
+      layoutStyles={lifestyleLayoutStyle}
+      customStyles={{
+        addToCartStyle: {
+          color: 'red',
+        },
+      }}
       item={{ ...CartData[0], rating: '5 star' }}
       addToCart={console.log}
       addToFavorites={console.log}
     ></FeaturedItem>
   </div>
 );
+
+const lifestyleLayoutStyle: IFeaturedItemLayoutStyle = {
+  wrapper: {
+    overflow: 'hidden',
+    background: 'red',
+    margin: 'auto',
+    position: 'relative',
+    boxSizing: 'border-box',
+    boxShadow: '-7px 8px 10px -2px rgba(196,196,196,1)',
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  image: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    border: '1px pink dashed',
+  },
+  details: {
+    flex: 1,
+    width: '100%',
+    backgroundColor: 'pink',
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  left: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '20px',
+  },
+  discount: {
+    zIndex: 9,
+    background: 'pink',
+    width: '120px',
+    height: '120px',
+    position: 'absolute',
+    top: '-70px',
+    right: '-70px',
+    borderRadius: '0px 0px 200px 200px',
+    transition: 'all 0.5s, border-radius 2s, top 1s',
+  },
+  off: {
+    position: 'absolute',
+    right: '75px',
+    top: '75px',
+    color: 'black',
+    fontWeight: 'bold',
+    opacity: 1,
+    fontSize: 'small',
+  },
+};
